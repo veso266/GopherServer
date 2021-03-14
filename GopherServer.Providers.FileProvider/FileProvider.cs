@@ -16,17 +16,22 @@ namespace GopherServer.Providers.FileProvider
 
         public override BaseResult GetResult(string selector)
         {
-            if (string.IsNullOrEmpty(selector))
-                return new DirectoryListingResult(BaseDirectory, BaseDirectory);
+            var path = Path.Combine(BaseDirectory, selector);
 
+            var indexPath = Path.Combine(path, "index.gopher");
+
+            if (string.IsNullOrEmpty(selector)) //If we are at index
+            {
+                if (File.Exists(indexPath))
+                    return new TextResult(File.ReadAllLines(indexPath).ToList());
+                else
+                    return new DirectoryListingResult(BaseDirectory, BaseDirectory);
+            }
             if (selector.Contains(".."))
                 return new ErrorResult("Invalid Path");
 
             selector = selector.TrimStart(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
 
-            var path = Path.Combine(BaseDirectory, selector);
-
-            var indexPath = Path.Combine(path, "index.gopher");
 
             if (File.Exists(indexPath))
                 return new TextResult(File.ReadAllLines(indexPath).ToList());
