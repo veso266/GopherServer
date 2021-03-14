@@ -35,10 +35,6 @@ namespace GopherServer
 
         public Server()
         {
-            //Show config file location
-#if DEBUG
-            Console.WriteLine("Config file location: " + System.Configuration.ConfigurationManager.OpenExeConfiguration(System.Configuration.ConfigurationUserLevel.None).FilePath);
-#endif
             IPAddress = IPAddress.Parse(ServerSettings.BoundIP);
             Port = ServerSettings.BoundPort;
             ExternalHostname = ServerSettings.PublicHostname;
