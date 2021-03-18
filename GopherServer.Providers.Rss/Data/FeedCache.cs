@@ -2,7 +2,7 @@
 using SQLite;
 using SQLiteNetExtensions.Attributes;
 
-namespace GopherServer.Core.Rss.Data
+namespace GopherServer.Providers.Rss.Data
 {
     public class FeedCache
     {

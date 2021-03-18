@@ -4,7 +4,7 @@ using GopherServer.Core.Helpers;
 using GopherServer.Core.Models;
 using GopherServer.Core.Results;
 
-namespace GopherServer.Core.Rss.GopherResults
+namespace GopherServer.Providers.Rss.GopherResults
 {
     public class FeedItemResult : DirectoryResult
     {

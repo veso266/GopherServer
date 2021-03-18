@@ -2,9 +2,9 @@
 using System.Linq;
 using GopherServer.Core.Models;
 using GopherServer.Core.Results;
-using GopherServer.Core.Rss.Data;
+using GopherServer.Providers.Rss.Data;
 
-namespace GopherServer.Core.Rss.GopherResults
+namespace GopherServer.Providers.Rss.GopherResults
 {
     public class FeedListingResult : DirectoryResult
     {

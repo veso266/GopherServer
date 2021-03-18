@@ -1,7 +1,7 @@
 ﻿using System;
-using GopherServer.Core.Rss.Data;
+using GopherServer.Providers.Rss.Data;
 
-namespace GopherServer.Core.Rss.Syndication
+namespace GopherServer.Providers.Rss.Syndication
 {
     public static class Syndication
     {

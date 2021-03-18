@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using GopherServer.Core.Models;
 using GopherServer.Core.Results;
-using GopherServer.Core.Rss.Data;
-using GopherServer.Core.Rss.GopherResults;
+using GopherServer.Providers.Rss.Data;
+using GopherServer.Providers.Rss.GopherResults;
 
-namespace GopherServer.Core.Rss
+namespace GopherServer.Providers.Rss
 {
     public class RssController
     {
