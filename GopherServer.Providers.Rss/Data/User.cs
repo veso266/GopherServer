@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using SQLite;
 using SQLiteNetExtensions.Attributes;
 
-namespace GopherServer.Providers.Rss.Data
+namespace GopherServer.Core.Rss.Data
 {
     public class User
     {

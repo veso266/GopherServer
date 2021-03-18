@@ -3,7 +3,7 @@ using WordPressRestApiStandard.Models;
 using GopherServer.Core.Helpers;
 using GopherServer.Core.Models;
 
-namespace GopherServer.Providers.WpJson.Extensions
+namespace GopherServer.Core.WpJson.Extensions
 {
     public static class WordPressExtensions
     {

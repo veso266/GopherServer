@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using SQLite;
 using SQLiteNetExtensions.Extensions;
-using GopherServer.Providers.Rss.Syndication;
+using GopherServer.Core.Rss.Syndication;
 
-namespace GopherServer.Providers.Rss.Data
+namespace GopherServer.Core.Rss.Data
 {
     public class Db
     {

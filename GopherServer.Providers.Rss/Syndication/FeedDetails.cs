@@ -4,7 +4,7 @@ using System.ServiceModel.Syndication;
 using System.Xml;
 using GopherServer.Core.Helpers;
 
-namespace GopherServer.Providers.Rss.Syndication
+namespace GopherServer.Core.Rss.Syndication
 {
     public class FeedDetails
     {
