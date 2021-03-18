@@ -4,9 +4,9 @@ using System.Linq;
 using GopherServer.Core.Providers;
 using GopherServer.Core.Results;
 using GopherServer.Core.Routes;
-using GopherServer.Core.Rss.Data;
+using GopherServer.Providers.Rss.Data;
 
-namespace GopherServer.Core.Rss
+namespace GopherServer.Providers.Rss
 {
     /// <summary>
     /// Rss Provider

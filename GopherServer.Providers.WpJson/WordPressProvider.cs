@@ -6,7 +6,7 @@ using GopherServer.Core.Providers;
 using GopherServer.Core.Results;
 using GopherServer.Core.Routes;
 
-namespace GopherServer.Core.WpJson
+namespace GopherServer.Providers.WpJson
 {
     /// <summary>
     /// Provides a Gopher Provider to the Wordpress REST API
@@ -30,7 +30,7 @@ namespace GopherServer.Core.WpJson
 
         public override void Init()
         {
-            WordPressUrl = ConfigurationManager.AppSettings[GetType().Name + ".Url"];
+            WordPressUrl = Settings.Url;
 
             // TODO Read in Config
             client = new WordPressClient(WordPressUrl);
@@ -78,6 +78,12 @@ namespace GopherServer.Core.WpJson
         {
             // This is where we read our selectors...
             // it's a shame we can't reuse the route code out of MVC (or can we ?)
+            Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine(selector);
             try
             {
                 if (string.IsNullOrEmpty(selector) || selector == "1") // some clients seem to use 1

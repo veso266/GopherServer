@@ -8,9 +8,9 @@ using WordPressRestApiStandard.QueryModel;
 using GopherServer.Core.Helpers;
 using GopherServer.Core.Models;
 using GopherServer.Core.Results;
-using GopherServer.Core.WpJson.Extensions;
+using GopherServer.Providers.WpJson.Extensions;
 
-namespace GopherServer.Core.WpJson
+namespace GopherServer.Providers.WpJson
 {
     public class WordPressClient
     {

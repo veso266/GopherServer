@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GopherServer.Core.Models;
 
-namespace GopherServer.Core.Rss.GopherResults
+namespace GopherServer.Providers.Rss.GopherResults
 {
     public class FeedResult : DirectoryResult
     {
