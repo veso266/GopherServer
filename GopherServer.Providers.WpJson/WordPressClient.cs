@@ -37,8 +37,8 @@ namespace GopherServer.Providers.WpJson
             result.Items.AddRange(latestPosts.ToDirectoryItems());
 
             result.Items.Add(new DirectoryItem("---"));
-            result.Items.Add(new DirectoryItem(ItemType.DIRECTORY, "Categories", "/categories/"));
-            result.Items.Add(new DirectoryItem(ItemType.INDEXSEARCH, "Search", "/search/"));
+            result.Items.Add(new DirectoryItem(ItemType.DIRECTORY, "Categories", Settings.HomePath + "/categories/"));
+            result.Items.Add(new DirectoryItem(ItemType.INDEXSEARCH, "Search", Settings.HomePath + "/search/"));
 
             // TODO: Add Tags and Pages
 
@@ -82,7 +82,7 @@ namespace GopherServer.Providers.WpJson
             {
                 Description = string.Format("{0} ({1})", c.Name, c.Count),
                 ItemType = ItemType.DIRECTORY,
-                Selector = "/category/" + c.Id
+                Selector = Settings.HomePath + "/category/" + c.Id
             }));
 
             return directory;
@@ -104,7 +104,7 @@ namespace GopherServer.Providers.WpJson
             result.Items.Add(new DirectoryItem("Author: " + post.Author));
             result.Items.Add(new DirectoryItem("Date Posted: " + post.DateGmt.ToString()));
             result.Items.Add(new DirectoryItem(" "));
-            result.Items.Add(new DirectoryItem(ItemType.DOC, "Text Version", "/posts/text/" + id));
+            result.Items.Add(new DirectoryItem(ItemType.DOC, "Text Version", Settings.HomePath + "/posts/text/" + id));
             result.Items.Add(new DirectoryItem(ItemType.HTML, "Web Link", "URL:" + post.Link));
             result.Items.Add(new DirectoryItem("---"));
             

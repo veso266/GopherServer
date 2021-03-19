@@ -39,19 +39,19 @@ namespace GopherServer.Providers.WpJson
             routes = new List<Route>()
             {
                 // Get Post
-                new TypedRoute<int>("Posts", @"\/posts\/(\d+)", client.GetPost),
+                new TypedRoute<int>("Posts", Settings.HomePath + @"\/posts\/(\d+)", client.GetPost),
 
                 // Get Post as Text
-                new TypedRoute<int>("Posts", @"\/posts\/text\/(\d+)", client.GetPostText),
+                new TypedRoute<int>("Posts", Settings.HomePath + @"\/posts\/text\/(\d+)", client.GetPostText),
 
                 // Categories List
-                new Route("Categories", @"\/categories\/", client.GetCategories),
+                new Route("Categories", Settings.HomePath + @"\/categories\/", client.GetCategories),
 
                 // Posts by Category
-                new TypedRoute<int>("CategoryPosts", @"\/category\/(\d+)", client.GetCategoryPosts),
+                new TypedRoute<int>("CategoryPosts", Settings.HomePath + @"\/category\/(\d+)", client.GetCategoryPosts),
                 
                 // Search
-                new TypedRoute<string>("Search", @"\/search\/*\t(.+)", client.Search),
+                new TypedRoute<string>("Search", Settings.HomePath + @"\/search\/*\t(.+)", client.Search),
 
                 // Get Image
                 //new TypedRoute<string>("Gif", @"\/gif\/(.+)", client.GetGif),
@@ -78,10 +78,18 @@ namespace GopherServer.Providers.WpJson
         {
             // This is where we read our selectors...
             // it's a shame we can't reuse the route code out of MVC (or can we ?)
+            Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine(selector);
 
             try
             {
-                if (string.IsNullOrEmpty(selector) || selector == "1") // some clients seem to use 1
+                if (selector == Settings.HomePath + "/" && Settings.HomePath != null) // 
+                    return client.GetHomePage();
+                else if ((string.IsNullOrEmpty(selector) || selector == "1" || selector == "/") && Settings.HomePath == null) //If HomePath is not defined | some clients seem to use 1 or /
                     return client.GetHomePage();
 
                 // Check our routes

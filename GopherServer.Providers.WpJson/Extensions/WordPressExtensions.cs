@@ -25,7 +25,7 @@ namespace GopherServer.Providers.WpJson.Extensions
             foreach (var p in posts)
             {
                 // Add a directory for the title
-                items.Add(new DirectoryItem(ItemType.DIRECTORY, p.Title.Rendered.CleanHtml(), "/posts/" + p.Id));
+                items.Add(new DirectoryItem(ItemType.DIRECTORY, p.Title.Rendered.CleanHtml(), Settings.HomePath + "/posts/" + p.Id));
 
                 // Add the blurb
                 items.AddRange(p.Excerpt.Rendered.CleanHtml().HtmlToText().WrapToDirectoryItems(80));
