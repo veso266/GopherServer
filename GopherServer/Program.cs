@@ -1,4 +1,5 @@
-﻿namespace GopherServer
+﻿using System;
+namespace GopherServer
 {
     public class Program
     {

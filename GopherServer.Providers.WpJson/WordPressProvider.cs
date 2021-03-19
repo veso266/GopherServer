@@ -78,12 +78,6 @@ namespace GopherServer.Providers.WpJson
         {
             // This is where we read our selectors...
             // it's a shame we can't reuse the route code out of MVC (or can we ?)
-            Console.Clear();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine(selector);
 
             try
             {
