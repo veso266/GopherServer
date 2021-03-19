@@ -37,28 +37,28 @@ namespace GopherServer.Providers.Rss
             {
                 // Named groups require that the parameter name matches the group name
                 // User Feed Listing
-                new NamedGroupRoute("UserFeeds", @"\/feeds\/(?<nickname>\w+)\/$", new Func<string, BaseResult>(this.Controller.GetUserFeeds)),
+                new NamedGroupRoute("UserFeeds", Settings.HomePath + @"\/feeds\/(?<nickname>\w+)\/$", new Func<string, BaseResult>(this.Controller.GetUserFeeds)),
 
                 // User Feed Listing (ie 'login')
-                new NamedGroupRoute("UserFeedsQuery", @"\/feeds\/\t(?<nickname>.*)", new Func<string, BaseResult>(this.Controller.GetUserFeeds)),
+                new NamedGroupRoute("UserFeedsQuery", Settings.HomePath + @"\/feeds\/\t(?<nickname>.*)", new Func<string, BaseResult>(this.Controller.GetUserFeeds)),
 
                 // Combined view of the user's feeds
-                new NamedGroupRoute("CombinedUserFeeds", @"\/feeds\/(?<nickname>\w+)\/all\/$", new Func<string, BaseResult>(this.Controller.GetCombinedFeeds)),
+                new NamedGroupRoute("CombinedUserFeeds", Settings.HomePath + @"\/feeds\/(?<nickname>\w+)\/all\/$", new Func<string, BaseResult>(this.Controller.GetCombinedFeeds)),
 
                 // View of selected Feed
-                new NamedGroupRoute("SpecificUserFeed", @"\/feeds\/(?<nickname>\w+)\/(?<feedId>\d+)\/$", new Func<string, int, BaseResult>(this.Controller.GetFeed)),
+                new NamedGroupRoute("SpecificUserFeed", Settings.HomePath + @"\/feeds\/(?<nickname>\w+)\/(?<feedId>\d+)\/$", new Func<string, int, BaseResult>(this.Controller.GetFeed)),
 
                 // View Feed Item
-                new NamedGroupRoute("FeedItem", @"\/feeds\/(?<nickname>\w+)\/(?<feedId>\d+)\/(?<itemId>.+)", new Func<string, int, string, BaseResult>(this.Controller.GetFeedItem)),
+                new NamedGroupRoute("FeedItem", Settings.HomePath + @"\/feeds\/(?<nickname>\w+)\/(?<feedId>\d+)\/(?<itemId>.+)", new Func<string, int, string, BaseResult>(this.Controller.GetFeedItem)),
 
                 // Registration
-                new NamedGroupRoute("Registration", @"\/register\/*\t(?<nickname>\w+)", new Func<string, BaseResult>(this.Controller.RegisterUser)),
+                new NamedGroupRoute("Registration", Settings.HomePath + @"\/register\/*\t(?<nickname>\w+)", new Func<string, BaseResult>(this.Controller.RegisterUser)),
 
                 // Add Feed
-                new NamedGroupRoute("AddFeed", @"\/user\/(?<nickname>\w+)\/add\/\t(?<feedUrl>.+)", new Func<string, string, BaseResult>(this.Controller.AddFeed)),
+                new NamedGroupRoute("AddFeed", Settings.HomePath + @"\/user\/(?<nickname>\w+)\/add\/\t(?<feedUrl>.+)", new Func<string, string, BaseResult>(this.Controller.AddFeed)),
 
                 // Delete User Feed
-                new NamedGroupRoute("DeleteFeed", @"\/user\/(?<nickname>.\w+)\/delete\/(?<feedId>\d+)\/$", new Func<string, int, BaseResult>(this.Controller.DeleteFeed)),
+                new NamedGroupRoute("DeleteFeed", Settings.HomePath + @"\/user\/(?<nickname>.\w+)\/delete\/(?<feedId>\d+)\/$", new Func<string, int, BaseResult>(this.Controller.DeleteFeed)),
             };
             
             return routes;
@@ -68,8 +68,10 @@ namespace GopherServer.Providers.Rss
         {
             try
             {
-                if (string.IsNullOrEmpty(selector) || selector == "1") // some clients seem to use 1
-                    return this.Controller.GetHomePage();
+                if (selector == Settings.HomePath + "/" && Settings.HomePath != null) // 
+                    return Controller.GetHomePage();
+                else if ((string.IsNullOrEmpty(selector) || selector == "1" || selector == "/") && Settings.HomePath == null) //If HomePath is not defined | some clients seem to use 1 or /
+                    return Controller.GetHomePage();
 
                 // Check our routes
                 var route = this.Routes.FirstOrDefault(r => r.IsMatch(selector));

@@ -25,8 +25,8 @@ namespace GopherServer.Providers.Rss.GopherResults
                 this.Items.Add(new ExternalUrlItem("Read More...", item.Links.First().Uri.ToString()));
 
             this.Items.Add(new DirectoryItem("---"));
-            this.Items.Add(new DirectoryItem("Return to '" + feed.Title + "'...", string.Format("/feeds/{0}/{1}/", nickname, feedId)));
-            this.Items.Add(new DirectoryItem("Return to Feed List...", string.Format("/feeds/{0}/", nickname)));
+            this.Items.Add(new DirectoryItem("Return to '" + feed.Title + "'...", Settings.HomePath + string.Format("/feeds/{0}/{1}/", nickname, feedId)));
+            this.Items.Add(new DirectoryItem("Return to Feed List...", Settings.HomePath + string.Format("/feeds/{0}/", nickname)));
         }
     }
 }

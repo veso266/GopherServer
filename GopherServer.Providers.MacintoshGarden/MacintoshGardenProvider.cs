@@ -40,10 +40,6 @@ namespace GopherServer.Providers.MacintoshGarden
 
             try
             {
-                /*
-                if (string.IsNullOrEmpty(selector) || selector == "1") // some clients seem to use 1
-                    return Controller.ShowHome();
-                */
                 if (selector == Settings.HomePath + "/" && Settings.HomePath != null) // 
                     return Controller.ShowHome();
                 else if ((string.IsNullOrEmpty(selector) || selector == "1" || selector == "/") && Settings.HomePath == null) //If HomePath is not defined | some clients seem to use 1 or /

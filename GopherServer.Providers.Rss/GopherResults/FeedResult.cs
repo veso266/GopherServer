@@ -22,14 +22,14 @@ namespace GopherServer.Providers.Rss.GopherResults
                 this.Items.Add(new DirectoryItem(feed.Title));
                 this.Items.Add(new DirectoryItem("---------------"));
                 this.Items.Add(new DirectoryItem("Last Updated: " + feed.LastUpdated.ToString()));
-                this.Items.Add(new DirectoryItem("Delete Feed", string.Format("/user/{0}/delete/{1}/", nickname, feedId)));
+                this.Items.Add(new DirectoryItem("Delete Feed", Settings.HomePath + string.Format("/user/{0}/delete/{1}/", nickname, feedId)));
                 this.Items.Add(new DirectoryItem(""));
-                this.Items.Add(new DirectoryItem("Return to Feed List", string.Format("/feeds/{0}/", nickname)));
+                this.Items.Add(new DirectoryItem("Return to Feed List", Settings.HomePath + string.Format("/feeds/{0}/", nickname)));
                 this.Items.Add(new DirectoryItem(""));
 
                 foreach (var item in feed.Feed.Items)
                 {
-                    this.Items.Add(new DirectoryItem(item.Title.Text, string.Format("/feeds/{0}/{1}/{2}", nickname, feedId, item.Id)));
+                    this.Items.Add(new DirectoryItem(item.Title.Text, Settings.HomePath + string.Format("/feeds/{0}/{1}/{2}", nickname, feedId, item.Id)));
                     //this.Items.Add(new DirectoryItem("Author(s): " + string.Join(", ", item.Authors.Select(a => a.Name))));
                     this.Items.Add(new DirectoryItem("Published: " + item.PublishDate.UtcDateTime.ToString()));
                     this.Items.AddRange(item.Summary.Text.HtmlToText().WrapToDirectoryItems());
@@ -42,7 +42,7 @@ namespace GopherServer.Providers.Rss.GopherResults
                 this.Items.Add(new DirectoryItem("Error Processing Feed."));
             }
 
-            this.Items.Add(new DirectoryItem("Return to Feed List", string.Format("/feeds/{0}/", nickname)));
+            this.Items.Add(new DirectoryItem("Return to Feed List", Settings.HomePath + string.Format("/feeds/{0}/", nickname)));
         }
     }
 }

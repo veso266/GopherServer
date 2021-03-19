@@ -12,7 +12,7 @@ namespace GopherServer.Providers.Rss.GopherResults
         {
             this.Items.Add(new DirectoryItem("Feeds for '" + nickname + "'"));
             this.Items.Add(new DirectoryItem(""));
-            this.Items.Add(new DirectoryItem(ItemType.INDEXSEARCH, "Add Feed", string.Format("/user/{0}/add/", nickname)));
+            this.Items.Add(new DirectoryItem(ItemType.INDEXSEARCH, "Add Feed", Settings.HomePath + string.Format("/user/{0}/add/", nickname)));
             this.Items.Add(new DirectoryItem("  Enter the URL of the feed when prompted."));
             this.Items.Add(new DirectoryItem(""));
 
@@ -22,11 +22,11 @@ namespace GopherServer.Providers.Rss.GopherResults
                 return;
             }
 
-            this.Items.Add(new DirectoryItem("Combined View", "/feeds/" + nickname + "/all/"));
+            this.Items.Add(new DirectoryItem("Combined View", Settings.HomePath + "/feeds/" + nickname + "/all/"));
 
             foreach (var feed in feeds)
             {
-                this.Items.Add(new DirectoryItem(feed.Feedname, string.Format("/feeds/{0}/{1}/", nickname, feed.Id)));
+                this.Items.Add(new DirectoryItem(feed.Feedname, Settings.HomePath + string.Format("/feeds/{0}/{1}/", nickname, feed.Id)));
                 this.Items.Add(new DirectoryItem(feed.Url));               
             }
         }
