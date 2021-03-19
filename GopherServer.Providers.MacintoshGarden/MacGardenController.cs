@@ -43,7 +43,7 @@ namespace GopherServer.Providers.MacintoshGarden
             result.Items.Add(new DirectoryItem("Macintosh Garden - Gopher Edition"));
             result.Items.Add(new DirectoryItem("================================="));
             result.Items.Add(new DirectoryItem(""));
-            result.Items.Add(new DirectoryItem(ItemType.INDEXSEARCH, "Search the Garden", "/search/"));
+            result.Items.Add(new DirectoryItem(ItemType.INDEXSEARCH, "Search the Garden", Settings.HomePath + "/search/"));
 
             return result;
         }

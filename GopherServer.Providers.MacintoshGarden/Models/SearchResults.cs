@@ -60,7 +60,7 @@ namespace GopherServer.Providers.MacintoshGarden.Models
                             Name = titleNode.Text,
                             Url = titleNode.Href,
                             SearchSnippet = searchSnippet.TextContent,
-                            Selector = "/app/" + titleNode.Href
+                            Selector = Settings.HomePath + "/app/" + titleNode.Href
                         };
 
                         results.Add(result);

@@ -11,7 +11,7 @@ namespace GopherServer.Providers.MacintoshGarden.Results
             this.Items.Add(new DirectoryItem("Search Results"));
             this.Items.Add(new DirectoryItem("--------------"));
 
-            this.Items.Add(new DirectoryItem(Core.Models.ItemType.INDEXSEARCH, "New Search", "/search/"));
+            this.Items.Add(new DirectoryItem(Core.Models.ItemType.INDEXSEARCH, "New Search", Settings.HomePath + "/search/"));
 
             foreach (var result in results.Results)
             {
@@ -23,9 +23,9 @@ namespace GopherServer.Providers.MacintoshGarden.Results
             this.Items.Add(new DirectoryItem("Current Page: " + results.PageNumber));
 
             if (!string.IsNullOrEmpty(results.PreviousPageLink))
-                this.Items.Add(new DirectoryItem("Previous Page", "/search/" + results.PreviousPageLink));
+                this.Items.Add(new DirectoryItem("Previous Page", Settings.HomePath + "/search/" + results.PreviousPageLink));
             if (!string.IsNullOrEmpty(results.NextPageLink))
-                this.Items.Add(new DirectoryItem("Next Page", "/search/" + results.NextPageLink));
+                this.Items.Add(new DirectoryItem("Next Page", Settings.HomePath + "/search/" + results.NextPageLink));
         }
     }
 }

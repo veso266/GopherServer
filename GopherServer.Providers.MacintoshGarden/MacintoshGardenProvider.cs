@@ -21,9 +21,9 @@ namespace GopherServer.Providers.MacintoshGarden
 
             this.Routes = new List<Route>() {                
                 new TypedRoute<string>("Bin", "BIN:(.+)", Controller.DoDownload), // Proxy Download                
-                new TypedRoute<string>("Search", @"\/search\/*\t(.+)", Controller.Search), // Search
-                new TypedRoute<string>("Search", @"\/search\/(http://macintoshgarden.org\/.+)", Controller.SearchPage),
-                new TypedRoute<string>("App", @"\/app\/(.+)", Controller.ShowApp), // App Result
+                new TypedRoute<string>("Search", Settings.HomePath + @"\/search\/*\t(.+)", Controller.Search), // Search
+                new TypedRoute<string>("Search", Settings.HomePath + @"\/search\/(http://macintoshgarden.org\/.+)", Controller.SearchPage),
+                new TypedRoute<string>("App", Settings.HomePath + @"\/app\/(.+)", Controller.ShowApp), // App Result
                 PrebuiltRoutes.GifRoute(), // Screenshot
             };
         }
@@ -40,7 +40,13 @@ namespace GopherServer.Providers.MacintoshGarden
 
             try
             {
+                /*
                 if (string.IsNullOrEmpty(selector) || selector == "1") // some clients seem to use 1
+                    return Controller.ShowHome();
+                */
+                if (selector == Settings.HomePath + "/" && Settings.HomePath != null) // 
+                    return Controller.ShowHome();
+                else if ((string.IsNullOrEmpty(selector) || selector == "1" || selector == "/") && Settings.HomePath == null) //If HomePath is not defined | some clients seem to use 1 or /
                     return Controller.ShowHome();
 
                 // Check our routes
