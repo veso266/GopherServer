@@ -3,9 +3,14 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GopherServer.Core\GopherServer.Core.csproj"/>
+    <ProjectReference Include="..\GopherServer.Core\GopherServer.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="AngleSharp" Version="0.12.1"/>
+    <PackageReference Include="AngleSharp" Version="0.12.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="app.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

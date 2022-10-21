@@ -9,6 +9,8 @@ namespace GopherServer.Providers.MacintoshGarden
 {
     public class MacintoshGardenProvider : ServerProviderBase
     {
+        public static System.Configuration.Configuration providerConfig = System.Configuration.ConfigurationManager.OpenExeConfiguration(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
         public List<Route> Routes { get; private set; }
         public MacGardenController Controller { get; set; }
 

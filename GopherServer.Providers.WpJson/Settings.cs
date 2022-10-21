@@ -4,13 +4,13 @@ namespace GopherServer.Providers.WpJson
 {
     public static class Settings
     {
-        public static string Url => ConfigurationManager.AppSettings["WordPressProvider.Url"];
+        public static string Url => WordPressProvider.providerConfig.AppSettings.Settings["WordPressProvider.Url"].Value;
         //public static string HomePath => ConfigurationManager.AppSettings["WordPressProvider.HomePath"];
 
         public static string HomePath { 
             get 
-            { 
-                string Setting = ConfigurationManager.AppSettings["WordPressProvider.HomePath"];
+            {
+                string Setting = WordPressProvider.providerConfig.AppSettings.Settings["WordPressProvider.HomePath"].Value;
                 if (!string.IsNullOrEmpty(Setting))
                     if (!Setting.StartsWith("/"))
                         Setting = "/" + Setting;

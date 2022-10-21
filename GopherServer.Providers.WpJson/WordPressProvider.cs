@@ -13,6 +13,8 @@ namespace GopherServer.Providers.WpJson
     /// </summary>
     public class WordPressProvider : ServerProviderBase
     {
+        public static System.Configuration.Configuration providerConfig = System.Configuration.ConfigurationManager.OpenExeConfiguration(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
         internal WordPressClient client;
 
         // The routes we're going to use later to perform actions
@@ -32,7 +34,6 @@ namespace GopherServer.Providers.WpJson
         {
             WordPressUrl = Settings.Url;
 
-            // TODO Read in Config
             client = new WordPressClient(WordPressUrl);
 
             // Build our route list for teh selector

@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System.Collections.Generic;
+using System.Configuration;
 
 namespace GopherServer.Core.Configuration
 {
@@ -8,7 +9,8 @@ namespace GopherServer.Core.Configuration
 
         public static string BoundIP => ConfigurationManager.AppSettings["boundIP"];
         public static int BoundPort => int.Parse(ConfigurationManager.AppSettings["boundPort"]);
-        public static string ProviderName => ConfigurationManager.AppSettings["providerName"];
+        //public static string ProviderName => ConfigurationManager.AppSettings["providerName"];
+        public static List<Provider> Providers = ConfigurationManager.GetSection("gopherProviders") as List<Provider>;
         public static string PublicHostname => ConfigurationManager.AppSettings["publicHostname"];
         public static int PublicPort => int.Parse(ConfigurationManager.AppSettings["publicPort"]);
         public static bool ResampleImages => bool.Parse(ConfigurationManager.AppSettings["resampleImages"]);

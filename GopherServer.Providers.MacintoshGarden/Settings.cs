@@ -8,7 +8,7 @@ namespace GopherServer.Providers.MacintoshGarden
         {
             get
             {
-                string Setting = ConfigurationManager.AppSettings["MacintoshGarden.HomePath"];
+                string Setting = MacintoshGardenProvider.providerConfig.AppSettings.Settings["MacintoshGarden.HomePath"].Value;
                 if (!string.IsNullOrEmpty(Setting))
                     if (!Setting.StartsWith("/"))
                         Setting = "/" + Setting;

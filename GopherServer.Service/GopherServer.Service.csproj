@@ -10,11 +10,6 @@
   </ItemGroup>
 
 	<!-- DO NOT EMBEDD app.config inside exe -->
-	<ItemGroup>
-		<None Update="app.config">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
-	</ItemGroup>
 	
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Hosting" Version="3.0.0-preview7.19362.4" />

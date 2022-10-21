@@ -8,4 +8,10 @@
     <ProjectReference Include="..\GopherServer.Core\GopherServer.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="app.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

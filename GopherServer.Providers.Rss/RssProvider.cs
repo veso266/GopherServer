@@ -13,6 +13,7 @@ namespace GopherServer.Providers.Rss
     /// </summary>
     public class RssProvider : ServerProviderBase
     {
+        public static System.Configuration.Configuration providerConfig = System.Configuration.ConfigurationManager.OpenExeConfiguration(System.Reflection.Assembly.GetExecutingAssembly().Location);
         Db db;
 
         public RssProvider(string hostname, int port) : base(hostname, port)

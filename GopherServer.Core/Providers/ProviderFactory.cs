@@ -13,21 +13,27 @@ namespace GopherServer.Core.Providers
         /// <param name="hostname"></param>
         /// <param name="port"></param>
         /// <returns></returns>
-        public static IServerProvider GetProvider(string hostname, int port)
+        public static IServerProvider[] GetProviders(string hostname, int port)
         {
-            // TODO: everything
-            
-            var assemblyName = ServerSettings.ProviderName;
+            // TODO: plugins could maybe load by itself (located in providers dir)
+            IServerProvider[] providers = new IServerProvider[ServerSettings.Providers.Count];
 
-            var asm = Assembly.Load(assemblyName);
-            if (asm == null)
-                throw new TypeLoadException("Unable to find any assembly named '" + assemblyName + "'");
+            for (int i = 0; i < ServerSettings.Providers.Count; i++)
+            {
+                var assemblyName = ServerSettings.Providers[i].name;
 
-            var type = asm.GetTypes().FirstOrDefault(x => typeof(IServerProvider).IsAssignableFrom(x));
-            if (type == null)
-                throw new TypeLoadException("No IServerProvider found in " + asm.FullName);
+                var asm = Assembly.Load(assemblyName);
+                if (asm == null)
+                    throw new TypeLoadException("Unable to find any assembly named '" + assemblyName + "'");
 
-            return (IServerProvider)Activator.CreateInstance(type, hostname, port);
+                var type = asm.GetTypes().FirstOrDefault(x => typeof(IServerProvider).IsAssignableFrom(x));
+                if (type == null)
+                    throw new TypeLoadException("No IServerProvider found in " + asm.FullName);
+
+                providers[i] = (IServerProvider)Activator.CreateInstance(type, hostname, port);
+            }
+
+            return providers;
         }
     }
 }

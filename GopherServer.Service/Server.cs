@@ -26,7 +26,8 @@ namespace GopherServer
         // Thread signal.  
         public static ManualResetEvent allDone = new ManualResetEvent(false);
 
-        public IServerProvider provider;
+        public IServerProvider[] providers;
+        //public IServerProvider provider2;
 
         public IPAddress IPAddress { get; private set; }
         public int Port { get; private set; }
@@ -39,8 +40,11 @@ namespace GopherServer
             Port = ServerSettings.BoundPort;
             ExternalHostname = ServerSettings.PublicHostname;
             ExternalPort = ServerSettings.PublicPort;
-            provider = ProviderFactory.GetProvider(this.ExternalHostname, this.ExternalPort);
-            provider.Init();
+            providers = ProviderFactory.GetProviders(this.ExternalHostname, this.ExternalPort);
+            for (int i = 0; i < providers.Length; i++) //We need to init all the plugins
+            {
+                providers[i].Init();
+            }
         }
 
         public void StartListening()
@@ -108,7 +112,15 @@ namespace GopherServer
             var handler = state.workSocket;
 
             // Read data from the client socket.   
-            var bytesRead = handler.EndReceive(ar);
+            var bytesRead = 0;
+
+            try
+            {
+                bytesRead = handler.EndReceive(ar);
+            }catch
+            {
+                return;
+            }
 
             if (bytesRead > 0)
             {
@@ -132,7 +144,18 @@ namespace GopherServer
                     if (selector == ".") selector = "";
 
                     // Tell the provider to return a result for the selector
-                    var result  = provider.GetResult(selector);
+                    BaseResult result = null;
+                    for (int i = 0; i < providers.Length; i++)
+                    {
+                        BaseResult tempResult = providers[i].GetResult(selector);
+                        if (!(tempResult is ErrorResult))
+                        {
+                            result = tempResult;
+                            break;
+                        }
+                        result = tempResult;
+                    }
+                    //var result = provider.GetResult(selector);
 
                     // This is a bit of a hack - I need a better way of doing this (push it back to the provider I think)
                     if (result is DirectoryResult)
@@ -155,6 +178,7 @@ namespace GopherServer
                     //}
 
                     WriteResult(handler, result);
+                    //TODO: add multiple providers support
                 }   
                 else
                 {
