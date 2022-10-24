@@ -1,0 +1,28 @@
+Gopher.Core
+
+Gopher.FileProvider
+   * Implement Command parser via gps commands (<? gps system.memory() ?> would return how much RAM does system have (2GB example))
+      - this would work via atributes so there would be class system and method memory, which would return amount of ram)
+
+      - EAXMPLE:  (Our system has <? gps system.memory() ?> of RAM and CPU is working with <? gps system.cpu(true) ?> per second
+namespace CommandLineParserDemo
+{
+	[CommandClass("system"))]
+	public class SystemClass
+	{
+		[CommandLineProperty("memory")]
+		public string getRAM()
+		{ 
+                                      return "2GB"; 
+                                  }
+
+		[CommandLineProperty("cpu")]
+		public string getCPU(bool cycles)
+		{ 
+                                      if (cycles)
+		       return "3000000000 cycles";
+		   else if (!cycles)
+                                         return "3 GHz";
+                                  }
+	}
+} 

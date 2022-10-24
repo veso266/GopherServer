@@ -42,9 +42,9 @@ namespace GopherServer.Providers.MacintoshGarden
 
             try
             {
-                if (selector == Settings.HomePath + "/" && Settings.HomePath != null) // 
+                if (selector == (Settings.HomePath + "/") && !string.IsNullOrEmpty(Settings.HomePath)) // 
                     return Controller.ShowHome();
-                else if ((string.IsNullOrEmpty(selector) || selector == "1" || selector == "/") && Settings.HomePath == null) //If HomePath is not defined | some clients seem to use 1 or /
+                else if ((string.IsNullOrEmpty(selector) || selector == "1" || selector == "/") && (string.IsNullOrEmpty(Settings.HomePath) || Settings.HomePath == "/")) //If HomePath is not defined | some clients seem to use 1 or /
                     return Controller.ShowHome();
 
                 // Check our routes

@@ -13,6 +13,8 @@ namespace GopherServer.Core.Configuration
 
             foreach (XmlNode childNode in section.ChildNodes)
             {
+                if (childNode.Name == "#comment") //If its a commented value, just skip this iteration
+                    continue;
                 foreach (XmlAttribute attrib in childNode.Attributes)
                 {
                     myConfigObject.Add(new Provider() { name = attrib.Value });

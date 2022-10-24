@@ -79,12 +79,11 @@ namespace GopherServer.Providers.WpJson
         {
             // This is where we read our selectors...
             // it's a shame we can't reuse the route code out of MVC (or can we ?)
-
             try
             {
-                if (selector == Settings.HomePath + "/" && Settings.HomePath != null) // 
+                if (selector == (Settings.HomePath + "/") && !string.IsNullOrEmpty(Settings.HomePath)) // 
                     return client.GetHomePage();
-                else if ((string.IsNullOrEmpty(selector) || selector == "1" || selector == "/") && Settings.HomePath == null) //If HomePath is not defined | some clients seem to use 1 or /
+                else if ((string.IsNullOrEmpty(selector) || selector == "1" || selector == "/") && (string.IsNullOrEmpty(Settings.HomePath) || Settings.HomePath == "/")) //If HomePath is not defined | some clients seem to use 1 or /
                     return client.GetHomePage();
 
                 // Check our routes

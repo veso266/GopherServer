@@ -8,7 +8,12 @@ namespace GopherServer.Providers.Rss
         {
             get
             {
-                string Setting = RssProvider.providerConfig.AppSettings.Settings["RSS.HomePath"].Value;
+                string Setting = null;
+                try
+                {
+                    Setting = RssProvider.providerConfig.AppSettings.Settings["RSS.HomePath"].Value;
+                }
+                catch { }
                 if (!string.IsNullOrEmpty(Setting))
                     if (!Setting.StartsWith("/"))
                         Setting = "/" + Setting;

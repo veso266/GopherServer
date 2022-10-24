@@ -10,7 +10,12 @@ namespace GopherServer.Providers.WpJson
         public static string HomePath { 
             get 
             {
-                string Setting = WordPressProvider.providerConfig.AppSettings.Settings["WordPressProvider.HomePath"].Value;
+                string Setting = null;
+                try
+                {
+                    Setting = WordPressProvider.providerConfig.AppSettings.Settings["WordPressProvider.HomePath"].Value;
+                }
+                catch {}
                 if (!string.IsNullOrEmpty(Setting))
                     if (!Setting.StartsWith("/"))
                         Setting = "/" + Setting;
