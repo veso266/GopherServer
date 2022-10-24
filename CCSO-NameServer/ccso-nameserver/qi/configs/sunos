@@ -1,3 +1,0 @@
-#  The defaults are suitable for BSD 4.3
-$Cflags .= " -DNO_MEMMOVE -DNO_STRERROR";
-1

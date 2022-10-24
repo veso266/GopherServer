@@ -1,2 +1,0 @@
-$Cflags .= " -DNO_MEMMOVE -DNO_VFPRINTF";
-$Para = '&';
