@@ -81,7 +81,7 @@ namespace GopherServer.Providers.WpJson
             // it's a shame we can't reuse the route code out of MVC (or can we ?)
             try
             {
-                if (selector == (Settings.HomePath + "/") && !string.IsNullOrEmpty(Settings.HomePath)) // 
+                if (selector == (Settings.HomePath + "/")) // 
                     return client.GetHomePage();
                 else if ((string.IsNullOrEmpty(selector) || selector == "1" || selector == "/") && (string.IsNullOrEmpty(Settings.HomePath) || Settings.HomePath == "/")) //If HomePath is not defined | some clients seem to use 1 or /
                     return client.GetHomePage();
