@@ -64,6 +64,8 @@ Make sure you have Sqlite available for your platform (Windows included).
 I've been able to successfully run this under Mono on Ubuntu 16 LTS. This, along with the low-memory footprint of 
 the providers, means you can host GopherServer on cheap linux hosting such as Amazon Lightsail or other low-end hosts.
 
+Also if you don't already, its a good idea to install ``libc6-dev`` & ``libgdiplus`` otherwise your images will not convert properly on linux
+
 # Client Support
 I've successfully tested this server with the following clients:
 
