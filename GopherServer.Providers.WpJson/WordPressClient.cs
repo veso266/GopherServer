@@ -104,7 +104,7 @@ namespace GopherServer.Providers.WpJson
             result.Items.Add(new DirectoryItem("Author: " + post.Author));
             result.Items.Add(new DirectoryItem("Date Posted: " + post.DateGmt.ToString()));
             result.Items.Add(new DirectoryItem(" "));
-            result.Items.Add(new DirectoryItem(ItemType.DOC, "Text Version", Settings.HomePath + "/posts/text/" + id));
+            result.Items.Add(new DirectoryItem(ItemType.FILE, "Text Version", Settings.HomePath + "/posts/text/" + id));
             result.Items.Add(new DirectoryItem(ItemType.HTML, "Web Link", "URL:" + post.Link));
             result.Items.Add(new DirectoryItem("---"));
             
